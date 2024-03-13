@@ -27,7 +27,7 @@ class _CodeState extends State<Code> {
               SizedBox(height:30,),
               TextButton(
                 onPressed: () {},
-                child: Text('SCAN '),
+                child: Text('SCAN. '),
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.white)),
