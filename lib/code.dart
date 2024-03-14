@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qrcode/image.dart';
+import 'package:qrcode/profile.dart';
 class Code extends StatefulWidget {
   const Code({super.key});
 
@@ -26,7 +28,12 @@ class _CodeState extends State<Code> {
               ),
               SizedBox(height:30,),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                      builder: (context) => Scanimg()),);
+                },
                 child: Text('SCAN. '),
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -34,6 +41,22 @@ class _CodeState extends State<Code> {
                   primary: Colors.white,
                 ),
               ),
+              SizedBox(height:30,),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Profile()),);
+                },
+                child: Text('PROFILE'),
+                style: TextButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.white)),
+                  primary: Colors.white,
+                ),
+              ),
+
             ],
           ),
         ),
