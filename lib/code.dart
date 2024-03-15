@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qrcode/button.dart';
 import 'package:qrcode/image.dart';
 import 'package:qrcode/profile.dart';
 class Code extends StatefulWidget {
@@ -32,7 +33,7 @@ class _CodeState extends State<Code> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                      builder: (context) => Scanimg()),);
+                      builder: (context) => Button()),);
                 },
                 child: Text('SCAN. '),
                 style: TextButton.styleFrom(
