@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:qrcode/login.dart';
 
 class Reg extends StatefulWidget {
   const Reg({super.key});
@@ -8,10 +12,56 @@ class Reg extends StatefulWidget {
 }
 
 class _MyAppState extends State<Reg> {
+
+  final _rollNoController=TextEditingController();
+  final _nameController=TextEditingController();
+  final _emailController=TextEditingController();
+  final _passwordController=TextEditingController();
+
+
+
+  void register() async{
+    Uri uri=Uri.parse('https://scnner-web.onrender.com/api/register');
+    var response=await http.post(uri,
+    headers:<String,String>{
+      'Content-Type':'application/json;charset=UTF-8'
+    },
+
+    body:jsonEncode({
+      'name':_nameController.text,
+      'email':_emailController.text,
+      'rollno':_rollNoController.text,
+      'password':_passwordController.text,
+
+    }));
+
+    var data=jsonDecode(response.body);
+    print(data["message"]);
+
+    print (response.statusCode);
+    print(response.body);
+
+    if(response.statusCode==200){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyApp()),
+      );
+
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(data["message"])));
+    }
+
+
+    print(_rollNoController.text);
+    print(_nameController.text);
+    print(_emailController.text);
+    print(_passwordController.text);
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home:Scaffold(
+    return Scaffold(
         backgroundColor:Colors.teal,
         appBar:AppBar(
           centerTitle:true,
@@ -32,6 +82,7 @@ class _MyAppState extends State<Reg> {
           mainAxisAlignment:MainAxisAlignment.center,
           children: [
             TextField(
+              controller:_rollNoController,
               decoration:InputDecoration(
                 contentPadding:EdgeInsets.symmetric(vertical:20.0),
                 enabledBorder:OutlineInputBorder(
@@ -45,6 +96,7 @@ class _MyAppState extends State<Reg> {
             ),
             SizedBox(height:30,),
             TextField(
+              controller: _nameController,
               decoration:InputDecoration(
                 contentPadding:EdgeInsets.symmetric(vertical:20.0),
                 enabledBorder:OutlineInputBorder(
@@ -58,6 +110,7 @@ class _MyAppState extends State<Reg> {
             ),
             SizedBox(height:30,),
             TextField(
+              controller: _emailController,
               decoration:InputDecoration(
                 contentPadding:EdgeInsets.symmetric(vertical:20.0),
                 enabledBorder:OutlineInputBorder(
@@ -71,6 +124,7 @@ class _MyAppState extends State<Reg> {
             ),
             SizedBox(height:30,),
             TextField(
+              controller: _passwordController,
               decoration:InputDecoration(
                 contentPadding:EdgeInsets.symmetric(vertical:20.0),
                 enabledBorder:OutlineInputBorder(
@@ -83,11 +137,10 @@ class _MyAppState extends State<Reg> {
 
             ),
             SizedBox(height:30,),
-            TextButton(onPressed: (){}, child:Text('register',style:TextStyle(color:Colors.white),)),
+            TextButton(onPressed: (){register();}, child:Text('register',style:TextStyle(color:Colors.white),)),
           ],
         ),
       ),
-      ),
-    );
+      );
   }
 }

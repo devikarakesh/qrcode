@@ -10,8 +10,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home:Scaffold(
+    return Scaffold(
         backgroundColor:Colors.teal,
         body:Center(
         child:Column(
@@ -30,10 +29,13 @@ class _ProfileState extends State<Profile> {
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(width: 3, color: Colors.white),
                 ),
-               // hintText: 'enter your roll no',
+               hintText: 'enter your phone no',
+                prefixIcon:IconButton(onPressed: (){},icon:Icon(Icons.phone_rounded)),
                 filled:true,
                 fillColor:Colors.white,
+
               ),
+
             ),
             SizedBox(height:20,),
             TextField(
@@ -42,7 +44,8 @@ class _ProfileState extends State<Profile> {
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(width: 3, color: Colors.white),
                 ),
-               // hintText: 'enter your roll no',
+               hintText: 'enter your email address',
+                prefixIcon:IconButton(onPressed: (){},icon:Icon(Icons.email_rounded)),
                 filled: true,
                 fillColor:Colors.white,
               ),
@@ -50,8 +53,8 @@ class _ProfileState extends State<Profile> {
         ],
       ),
     ),
-      ),
-    );
+      );
+
 
   }
 }

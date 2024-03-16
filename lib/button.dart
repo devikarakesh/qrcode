@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qrcode/login.dart';
 import 'package:qrcode/profile.dart';
 
 class Button extends StatefulWidget {
@@ -11,8 +12,7 @@ class Button extends StatefulWidget {
 class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home:Scaffold(
+    return Scaffold(
         backgroundColor:Colors.teal,
         body:Center(
          child:Column(
@@ -47,7 +47,6 @@ class _ButtonState extends State<Button> {
            ],
          ),
         ),
-      ),
-    );
+      );
   }
 }

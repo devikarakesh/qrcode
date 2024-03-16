@@ -13,8 +13,7 @@ class Code extends StatefulWidget {
 class _CodeState extends State<Code> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home:Scaffold(
+    return Scaffold(
         backgroundColor:Colors.teal,
         body:Center(
           child:Column(
@@ -42,7 +41,7 @@ class _CodeState extends State<Code> {
                   primary: Colors.white,
                 ),
               ),
-              SizedBox(height:30,),
+              /*SizedBox(height:30,),
               TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -56,13 +55,13 @@ class _CodeState extends State<Code> {
                       side: BorderSide(color: Colors.white)),
                   primary: Colors.white,
                 ),
-              ),
+              ),*/
 
             ],
           ),
         ),
-      ),
-    );
+      );
+
   }
 }
 

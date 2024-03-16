@@ -12,8 +12,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.teal,
         body: Center(
           child: Column(
@@ -82,7 +81,7 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
         ),
-      ),
-    );
+      );
+
   }
 }
