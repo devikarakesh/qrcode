@@ -1,3 +1,6 @@
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:qrcode/code.dart';
 import 'package:qrcode/reg.dart';
@@ -10,6 +13,46 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  final rollNoController=TextEditingController();
+  final passwordController=TextEditingController();
+
+
+
+
+void login ()async{
+    Uri uri = Uri.parse('https://scnner-web.onrender.com/api/login');
+    var response = await http.post(uri,
+        headers: <String, String>{
+          'Content-Type':'application/json;charset=UTF-8'
+        },
+
+        body: jsonEncode({
+          'rollno': rollNoController.text,
+          'password': passwordController.text,
+        }));
+
+    var ddata = jsonDecode(response.body);
+    print(ddata["message"]);
+    print(response.statusCode);
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Code()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("failed")));
+    }
+
+
+    print(rollNoController.text);
+    print(passwordController.text);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +67,7 @@ class _MyAppState extends State<MyApp> {
                 height: 20,
               ),
               TextField(
+                controller: rollNoController,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(vertical: 20.0),
                   enabledBorder: OutlineInputBorder(
@@ -37,6 +81,7 @@ class _MyAppState extends State<MyApp> {
                 height: 35,
               ),
               TextField(
+                controller: passwordController,
                   decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 20.0),
                 enabledBorder: OutlineInputBorder(
@@ -49,10 +94,12 @@ class _MyAppState extends State<MyApp> {
                 height: 25,
               ),
               TextButton(
-                onPressed: () {Navigator.push(
+                onPressed: () {
+                  login();
+                  /*Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Code()),
-                );},
+                );*/},
                 child: Text('login'),
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(

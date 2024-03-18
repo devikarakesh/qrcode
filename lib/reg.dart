@@ -20,9 +20,9 @@ class _MyAppState extends State<Reg> {
 
 
 
-  void register() async{
+  Future<void> register(BuildContext) async{
     Uri uri=Uri.parse('https://scnner-web.onrender.com/api/register');
-    var response=await http.post(uri,
+    var response = await http.post(uri,
     headers:<String,String>{
       'Content-Type':'application/json;charset=UTF-8'
     },
