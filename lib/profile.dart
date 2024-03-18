@@ -29,7 +29,7 @@ class _ProfileState extends State<Profile> {
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(width: 3, color: Colors.white),
                 ),
-               hintText: 'enter your phone no',
+               hintText: 'enter your phone number',
                 prefixIcon:IconButton(onPressed: (){},icon:Icon(Icons.phone_rounded)),
                 filled:true,
                 fillColor:Colors.white,
